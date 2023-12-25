@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Provider]
+(
+	[ProviderId]	INT				IDENTITY(1000,1) NOT NULL,
+	[FirstName]		NVARCHAR(255)	NOT NULL,
+	[LastName]		NVARCHAR(255)	NOT NULL,
+	[CreatedAt]		DATETIME2		NOT NULL,
+	CONSTRAINT [ProviderId] PRIMARY KEY CLUSTERED ([ProviderId] ASC),
+)

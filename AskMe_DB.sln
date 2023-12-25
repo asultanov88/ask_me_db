@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AskMe_DB", "AskMe_DB.sqlproj", "{763B9B9C-2F5E-4276-9C57-AF05908B89B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{763B9B9C-2F5E-4276-9C57-AF05908B89B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763B9B9C-2F5E-4276-9C57-AF05908B89B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763B9B9C-2F5E-4276-9C57-AF05908B89B6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{763B9B9C-2F5E-4276-9C57-AF05908B89B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763B9B9C-2F5E-4276-9C57-AF05908B89B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763B9B9C-2F5E-4276-9C57-AF05908B89B6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5861FEF0-C63A-42DE-BBC7-A093375EA996}
+	EndGlobalSection
+EndGlobal
