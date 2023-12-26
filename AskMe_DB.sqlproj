@@ -66,12 +66,12 @@
     <Folder Include="dbo\data\datascript" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\tables\Provider.sql" />
-    <Build Include="dbo\stored procedures\UspGetAllProviders.sql" />
     <Build Include="dbo\tables\User.sql" />
     <Build Include="dbo\stored procedures\UspGetUserByEmail.sql" />
     <Build Include="dbo\user defiined types\UserTableType.sql" />
     <Build Include="dbo\stored procedures\UspInsertUser.sql" />
+    <Build Include="dbo\tables\ClientUser.sql" />
+    <Build Include="dbo\tables\ProviderUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />

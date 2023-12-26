@@ -15,6 +15,8 @@ AS
 BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
+        DECLARE @UserId INT = NULL
+
         INSERT INTO
             [User]
         SELECT
@@ -29,7 +31,24 @@ BEGIN
         FROM
             @User
 
-        SELECT SCOPE_IDENTITY() AS UserId
+        SET @UserId = SCOPE_IDENTITY()
+
+        -- Insert into [ClientUser]
+        IF((SELECT TOP 1 [IsClient] FROM @User) = 1)
+            BEGIN
+                INSERT INTO [dbo].[ClientUser]
+                SELECT @UserId
+            END
+
+        -- Insert into [ProviderUser]
+        IF((SELECT TOP 1 [IsProvider] FROM @User) = 1)
+            BEGIN
+                INSERT INTO [dbo].[ProviderUser]
+                SELECT @UserId
+            END
+
+        SELECT @UserId AS UserId
+
     END TRY
     BEGIN CATCH
         THROW
