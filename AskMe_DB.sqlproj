@@ -68,7 +68,6 @@
   <ItemGroup>
     <Build Include="dbo\tables\Provider.sql" />
     <Build Include="dbo\stored procedures\UspGetAllProviders.sql" />
-    <Build Include="dbo\user defiined types\ProviderTableType.sql" />
     <Build Include="dbo\tables\User.sql" />
     <Build Include="dbo\stored procedures\UspGetUserByEmail.sql" />
     <Build Include="dbo\user defiined types\UserTableType.sql" />
