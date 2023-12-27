@@ -64,6 +64,8 @@
     <Folder Include="dbo\user defiined types" />
     <Folder Include="dbo\data" />
     <Folder Include="dbo\data\datascript" />
+    <Folder Include="dbo\functions" />
+    <Folder Include="dbo\data\datafix" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\tables\User.sql" />
@@ -72,6 +74,9 @@
     <Build Include="dbo\stored procedures\UspInsertUser.sql" />
     <Build Include="dbo\tables\ClientUser.sql" />
     <Build Include="dbo\tables\ProviderUser.sql" />
+    <Build Include="dbo\tables\LkWeekDay.sql" />
+    <Build Include="dbo\tables\DataScriptVersion.sql" />
+    <Build Include="dbo\functions\GetDataScriptVersion.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
@@ -79,6 +84,8 @@
     <None Include="dbo\data\datascript\User.data.sql" />
     <None Include="dbo\data\datascript\ClientUser.data.sql" />
     <None Include="dbo\data\datascript\ProviderUser.data.sql" />
+    <None Include="dbo\data\datascript\LkWeekDay.data.sql" />
+    <None Include="dbo\data\datafix\UserClientProvider.datafix.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\data\PostDeployment.sql" />

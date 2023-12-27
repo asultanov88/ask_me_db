@@ -10,7 +10,12 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
+-- Datafix.
+:r .\datafix\UserClientProvider.datafix.sql
+
+-- DataScript.
 :r .\datascript\User.data.sql
 :r .\datascript\ClientUser.data.sql
 :r .\datascript\ProviderUser.data.sql	
+:r .\datascript\LkWeekDay.data.sql	
 

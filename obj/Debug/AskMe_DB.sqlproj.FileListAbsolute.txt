@@ -12,9 +12,9 @@ C:\Users\CoolBean\Desktop\NestJs\ask_me_db\bin\Debug\AskMe_DB.dacpac
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\bin\Debug\AskMe_DB.dll
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\bin\Debug\AskMe_DB.pdb
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\AskMe_DB.sqlproj.AssemblyReference.cache
+C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\AskMe_DB.dll
+C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\AskMe_DB.pdb
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\Model.xml
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\refactor.xml
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\postdeploy.sql
 C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\predeploy.sql
-C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\AskMe_DB.dll
-C:\Users\CoolBean\Desktop\NestJs\ask_me_db\obj\Debug\AskMe_DB.pdb
