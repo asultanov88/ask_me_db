@@ -77,6 +77,8 @@
     <Build Include="dbo\tables\LkWeekDay.sql" />
     <Build Include="dbo\tables\DataScriptVersion.sql" />
     <Build Include="dbo\functions\GetDataScriptVersion.sql" />
+    <Build Include="dbo\tables\ProviderDetails.sql" />
+    <Build Include="dbo\tables\ProviderWorkDay.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
