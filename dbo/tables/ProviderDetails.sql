@@ -7,5 +7,6 @@
 	[PhoneNumber]		NVARCHAR(50)	NOT NULL,
 	[Description]		NVARCHAR(1000)	NOT NULL,
 	CONSTRAINT [ProviderDetailsId] PRIMARY KEY CLUSTERED ([ProviderDetailsId] ASC),
+	CONSTRAINT UC_Provider UNIQUE(ProviderId),
 	CONSTRAINT [FK_ProviderDetails_ProviderId] FOREIGN KEY ([ProviderId]) REFERENCES [dbo].[ProviderUser]([ProviderId])
 )

@@ -88,6 +88,7 @@
     <Build Include="dbo\user defiined types\PkTableType.sql" />
     <Build Include="dbo\user defiined types\ProviderDetailsTableType.sql" />
     <Build Include="dbo\user defiined types\ProviderWorkHourTableType.sql" />
+    <Build Include="dbo\stored procedures\UspInsertProviderDetails.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
