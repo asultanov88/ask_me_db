@@ -14,8 +14,8 @@ AS BEGIN
         FROM
             [dbo].[DataScriptVersion]
         WHERE
-            [Name] = @DataScriptVersion
-            AND [Version] = @DataScriptName
+            [Name] = @DataScriptName
+            AND [Version] = @DataScriptVersion
     )
 
     RETURN @ExecutionExists
