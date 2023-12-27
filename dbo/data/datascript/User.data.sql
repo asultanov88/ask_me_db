@@ -1,7 +1,7 @@
-﻿DELETE 
-	[dbo].[User]
-WHERE
-	UserId <1000
+﻿-- Delete old records.
+DELETE [dbo].[ProviderUser] WHERE UserId<1000
+DELETE [dbo].[ClientUser] WHERE	UserId<1000
+DELETE [dbo].[User] WHERE UserId <1000
 
 SET IDENTITY_INSERT [dbo].[User] ON
 

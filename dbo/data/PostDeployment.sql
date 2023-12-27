@@ -10,4 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\datascript\User.data.sql	
+:r .\datascript\User.data.sql
+:r .\datascript\ClientUser.data.sql
+:r .\datascript\ProviderUser.data.sql	
+

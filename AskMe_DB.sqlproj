@@ -77,6 +77,8 @@
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
     <None Include="dbo\publish profiles\Azure_AskMe_DB.publish.xml" />
     <None Include="dbo\data\datascript\User.data.sql" />
+    <None Include="dbo\data\datascript\ClientUser.data.sql" />
+    <None Include="dbo\data\datascript\ProviderUser.data.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\data\PostDeployment.sql" />
