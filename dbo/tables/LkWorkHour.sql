@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[LkWorkHour]
+(
+	[LkWorkHourId]	INT IDENTITY(1000, 1) NOT NULL,
+	[WorkHour]		NVARCHAR(10) NOT NULL,
+	CONSTRAINT [LkWorkHourId] PRIMARY KEY CLUSTERED ([LkWorkHourId] ASC),
+)
