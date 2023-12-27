@@ -16,14 +16,22 @@ BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
         SELECT 
-            [UserId],
-            [FirstName],
-            [LastName],
-            [Email],
-            [Password],
-            [CreatedAt]
+            u.[UserId],
+            u.[FirstName],
+            u.[LastName],
+            u.[Email],
+            u.[Password],
+            u.[CreatedAt],
+            u.[IsClient],
+            u.[IsProvider],
+            cu.[ClientId],
+            pu.[ProviderId]
         FROM 
-            [dbo].[User]
+            [dbo].[User] u
+            LEFT JOIN [ClientUser] cu
+                ON cu.[UserId] = u.[UserId]
+            LEFT JOIN [ProviderUser] pu
+                ON pu.[UserId] = u.[UserId]
         WHERE
             [Email] = @Email
     END TRY
