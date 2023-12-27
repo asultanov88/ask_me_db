@@ -19,4 +19,5 @@ Post-Deployment Script Template
 :r .\datascript\ProviderUser.data.sql	
 :r .\datascript\LkWeekDay.data.sql	
 :r .\datascript\LkWorkHour.data.sql	
+:r .\datascript\LkCategory.data.sql	
 

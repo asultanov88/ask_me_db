@@ -1,0 +1,4 @@
+﻿CREATE TYPE [PkTableType] AS TABLE
+(
+	[Pk] INT NOT NULL
+)

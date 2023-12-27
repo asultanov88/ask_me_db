@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[LkCategory]
+(
+	[LkCategoryId]	INT IDENTITY(1000, 1) NOT NULL,
+	[Name]			NVARCHAR(255) NOT NULL,
+	CONSTRAINT [LkCategoryId] PRIMARY KEY CLUSTERED ([LkCategoryId] ASC)
+)

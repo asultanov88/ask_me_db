@@ -83,6 +83,11 @@
     <Build Include="dbo\tables\LkWorkHour.sql" />
     <Build Include="dbo\stored procedures\UspGetLkWeekDays.sql" />
     <Build Include="dbo\stored procedures\UspGetLkWorkHours.sql" />
+    <Build Include="dbo\tables\LkCategory.sql" />
+    <Build Include="dbo\tables\ProviderCategory.sql" />
+    <Build Include="dbo\user defiined types\PkTableType.sql" />
+    <Build Include="dbo\user defiined types\ProviderDetailsTableType.sql" />
+    <Build Include="dbo\user defiined types\ProviderWorkHourTableType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
@@ -93,6 +98,7 @@
     <None Include="dbo\data\datascript\LkWeekDay.data.sql" />
     <None Include="dbo\data\datafix\UserClientProvider.datafix.sql" />
     <None Include="dbo\data\datascript\LkWorkHour.data.sql" />
+    <None Include="dbo\data\datascript\LkCategory.data.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\data\PostDeployment.sql" />
