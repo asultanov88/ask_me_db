@@ -1,4 +1,5 @@
-﻿CREATE FUNCTION [dbo].[GetDataScriptVersion]
+﻿-- Checks if specific data script/data fix has been executed.
+CREATE FUNCTION [dbo].[GetDataScriptVersion]
 (
     @DataScriptName     NVARCHAR(255),
     @DataScriptVersion  NVARCHAR(255) 
