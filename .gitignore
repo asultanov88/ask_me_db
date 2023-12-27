@@ -3,3 +3,7 @@ bin/
 obj/
 *.jfm
 *.dbmdl
+/AskMe_DB.jfm
+/obj/Debug/AskMe_DB.dll
+/obj/Debug/AskMe_DB.pdb
+/obj/Debug/postdeploy.sql
