@@ -94,6 +94,9 @@
     <Build Include="dbo\stored procedures\UspGetProviderWeekDays.sql" />
     <Build Include="dbo\stored procedures\UspGetProviderCategory.sql" />
     <Build Include="dbo\stored procedures\UspGetProviderSearch.sql" />
+    <Build Include="dbo\tables\Subject.sql" />
+    <Build Include="dbo\user defiined types\SubjectTableType.sql" />
+    <Build Include="dbo\stored procedures\UspInsertSubject.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
