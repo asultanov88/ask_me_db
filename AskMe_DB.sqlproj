@@ -90,6 +90,9 @@
     <Build Include="dbo\user defiined types\ProviderWorkHourTableType.sql" />
     <Build Include="dbo\stored procedures\UspInsertProviderDetails.sql" />
     <Build Include="dbo\stored procedures\UspGetLkCategories.sql" />
+    <Build Include="dbo\stored procedures\UspGetProviderDetails.sql" />
+    <Build Include="dbo\stored procedures\UspGetProviderWeekDays.sql" />
+    <Build Include="dbo\stored procedures\UspGetProviderCategory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
