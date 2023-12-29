@@ -97,6 +97,8 @@
     <Build Include="dbo\tables\Subject.sql" />
     <Build Include="dbo\user defiined types\SubjectTableType.sql" />
     <Build Include="dbo\stored procedures\UspInsertSubject.sql" />
+    <Build Include="dbo\tables\ClientProvider.sql" />
+    <Build Include="dbo\stored procedures\UspInsertClientProvider.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />

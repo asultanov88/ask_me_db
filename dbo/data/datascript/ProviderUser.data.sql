@@ -11,7 +11,7 @@ IF(@ExecutionExistsProviderUser <> 1)
 		INSERT INTO	[dbo].[ProviderUser]
 			([ProviderId], [UserId])
 		VALUES
-			 (2, 2)
+			 (1, 2)
 	
 		SET IDENTITY_INSERT [dbo].[ProviderUser] OFF
 
