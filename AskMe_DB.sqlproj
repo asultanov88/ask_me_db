@@ -99,6 +99,7 @@
     <Build Include="dbo\stored procedures\UspInsertSubject.sql" />
     <Build Include="dbo\tables\ClientProvider.sql" />
     <Build Include="dbo\stored procedures\UspInsertClientProvider.sql" />
+    <Build Include="dbo\stored procedures\UspGetMyProviders.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
