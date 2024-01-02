@@ -22,6 +22,11 @@ BEGIN
         DECLARE @ProviderId INT = (SELECT TOP 1 [ProviderId] FROM @ProviderDetails),
                 @ProviderDetailsId INT = NULL
 
+        IF(EXISTS(SELECT 1 FROM [dbo].[ProviderDetails] WHERE [ProviderId] = @ProviderId))
+            BEGIN
+                RAISERROR('Provider details already exists. Please update provider details for new changes.', 16, 1)
+            END
+
         -- Provider details insert.
         INSERT INTO
             [dbo].[ProviderDetails]
