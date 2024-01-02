@@ -17,22 +17,28 @@ BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
 
+        DECLARE @ClientProviderId INT = (SELECT TOP 1 [ClientProviderId] FROM @Subject),
+                @ProviderId INT = (SELECT TOP 1 [ProviderId] FROM @Subject)
+
         IF(@ClientId IS NULL)
             BEGIN
                 RAISERROR('ClientId cannot be null.',16,1)
             END
-
-        DECLARE @ValidClientId INT = 
-        (SELECT TOP 1 
-            cp.[ClientId] 
-        FROM 
-            @Subject s
-            JOIN [ClientProvider] cp
-                ON cp.[ClientProviderId] = s.[ClientProviderId])
-
-        IF(@ValidClientId IS NULL OR (@ValidClientId <> @ClientId))
+                
+        IF(@ClientProviderId IS NULL AND @ProviderId IS NULL)
             BEGIN
-                RAISERROR('Invalid ClientId.',16,1)
+                RAISERROR('Either clientProviderId or providerId must be supplied.',16,1)
+            END
+
+        IF(@ClientProviderId IS NULL AND @ProviderId IS NOT NULL)
+            BEGIN
+                INSERT INTO
+                    [dbo].[ClientProvider]
+                SELECT
+                    @ClientId,
+                    @ProviderId
+
+                SET @ClientProviderId = SCOPE_IDENTITY()
             END
 
         DECLARE @SubjectId INT = NULL
@@ -40,7 +46,7 @@ BEGIN
         INSERT INTO
             [dbo].[Subject]
         SELECT
-            [ClientProviderId],
+            @ClientProviderId,
             [Title],
             0 AS [Deleted]
         FROM

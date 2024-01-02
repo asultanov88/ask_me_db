@@ -98,7 +98,6 @@
     <Build Include="dbo\user defiined types\SubjectTableType.sql" />
     <Build Include="dbo\stored procedures\UspInsertSubject.sql" />
     <Build Include="dbo\tables\ClientProvider.sql" />
-    <Build Include="dbo\stored procedures\UspInsertClientProvider.sql" />
     <Build Include="dbo\stored procedures\UspGetMyProviders.sql" />
   </ItemGroup>
   <ItemGroup>
