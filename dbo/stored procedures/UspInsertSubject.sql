@@ -17,7 +17,7 @@ BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
 
-        DECLARE @ClientProviderId INT = (SELECT TOP 1 [ClientProviderId] FROM @Subject),
+        DECLARE @ClientProviderId INT = NULL,
                 @ProviderId INT = (SELECT TOP 1 [ProviderId] FROM @Subject)
 
         IF(@ClientId IS NULL)
@@ -25,35 +25,32 @@ BEGIN
                 RAISERROR('ClientId cannot be null.',16,1)
             END
                 
-        IF(@ClientProviderId IS NULL AND @ProviderId IS NULL)
+        IF(@ProviderId IS NULL)
             BEGIN
-                RAISERROR('Either clientProviderId or providerId must be supplied.',16,1)
+                RAISERROR('ProviderId must be supplied.',16,1)
             END
 
-        IF(@ClientProviderId IS NULL AND @ProviderId IS NOT NULL)
+        -- Check if ClientProviderId exists.
+        SET @ClientProviderId = (
+            SELECT TOP 1
+                [ClientProviderId]
+            FROM
+                [dbo].[ClientProvider]
+            WHERE
+                [ClientId] = @ClientId
+                AND [ProviderId] = @ProviderId
+        )
+
+        -- ClientProviderId not found. Insert a new one.
+        IF(@ClientProviderId IS NULL)
             BEGIN
-                -- Check if ClientProviderId exists.
-                SET @ClientProviderId = (
-                    SELECT
-                        [ClientProviderId]
-                    FROM
-                        [dbo].[ClientProvider]
-                    WHERE
-                        [ClientId] = @ClientId
-                        AND [ProviderId] = @ProviderId
-                )
+                INSERT INTO
+                    [dbo].[ClientProvider]
+                SELECT
+                    @ClientId,
+                    @ProviderId
 
-                -- ClientProviderId not found. Insert a new one.
-                IF(@ClientProviderId IS NULL)
-                    BEGIN
-                        INSERT INTO
-                            [dbo].[ClientProvider]
-                        SELECT
-                            @ClientId,
-                            @ProviderId
-
-                        SET @ClientProviderId = SCOPE_IDENTITY()
-                    END
+                SET @ClientProviderId = SCOPE_IDENTITY()
             END
 
         DECLARE @SubjectId INT = NULL
