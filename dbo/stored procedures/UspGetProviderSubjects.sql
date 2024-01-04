@@ -65,41 +65,19 @@ BEGIN
                     m.[Viewed] = 0
 
                 -- Final select with message count.
-                DROP TABLE IF EXISTS #FinalSubjectResult
-                CREATE TABLE #FinalSubjectResult
-                (
-                    [SubjectId] INT,
-                    [Title] NVARCHAR(MAX),
-                    [NewMessageCount] INT
-                )
-
-			    DECLARE @SubjectId INT = NULL
-                WHILE ((SELECT COUNT(1) FROM #ClientProviderSubjects) > 0)
-                    BEGIN
-
-                        SET @SubjectId = (SELECT TOP 1 [SubjectId] FROM #ClientProviderSubjects)
-
-                        INSERT INTO #FinalSubjectResult
-							([SubjectId],[Title],[NewMessageCount])                           
-                        VALUES
-							(
-								@SubjectId,
-								(SELECT [Title] FROM #ClientProviderSubjects WHERE [SubjectId] = @SubjectId),
-								(SELECT COUNT(1) FROM #SubjectMessages WHERE [SubjectId] = @SubjectId)
-							)                         
-                            
-                        DELETE #ClientProviderSubjects WHERE [SubjectId] = @SubjectId
-
-                    END
-
-                SELECT
-                    [SubjectId],
-                    [Title],
-                    [NewMessageCount]
-                FROM
-                    #FinalSubjectResult
+                SELECT 
+                    cps.[SubjectId],
+                    cps.[Title],
+                    COUNT(sm.[SubjectId]) AS NewMessageCount
+                FROM 
+                    #ClientProviderSubjects cps
+                    LEFT JOIN #SubjectMessages sm 
+                        ON cps.[SubjectId] = sm.[SubjectId]
+                GROUP BY 
+                    cps.[SubjectId],
+					cps.[Title]
                 ORDER BY
-                    [SubjectId] DESC
+                    cps.[SubjectId] DESC
 
             END
     END TRY
