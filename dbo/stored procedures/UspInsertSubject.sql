@@ -32,13 +32,28 @@ BEGIN
 
         IF(@ClientProviderId IS NULL AND @ProviderId IS NOT NULL)
             BEGIN
-                INSERT INTO
-                    [dbo].[ClientProvider]
-                SELECT
-                    @ClientId,
-                    @ProviderId
+                -- Check if ClientProviderId exists.
+                SET @ClientProviderId = (
+                    SELECT
+                        [ClientProviderId]
+                    FROM
+                        [dbo].[ClientProvider]
+                    WHERE
+                        [ClientId] = @ClientId
+                        AND [ProviderId] = @ProviderId
+                )
 
-                SET @ClientProviderId = SCOPE_IDENTITY()
+                -- ClientProviderId not found. Insert a new one.
+                IF(@ClientProviderId IS NULL)
+                    BEGIN
+                        INSERT INTO
+                            [dbo].[ClientProvider]
+                        SELECT
+                            @ClientId,
+                            @ProviderId
+
+                        SET @ClientProviderId = SCOPE_IDENTITY()
+                    END
             END
 
         DECLARE @SubjectId INT = NULL

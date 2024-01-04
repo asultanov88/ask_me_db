@@ -101,6 +101,8 @@
     <Build Include="dbo\stored procedures\UspGetMyProviders.sql" />
     <Build Include="dbo\tables\Message.sql" />
     <Build Include="dbo\tables\SubjectMessage.sql" />
+    <Build Include="dbo\stored procedures\UspGetProviderSubjects.sql" />
+    <Build Include="dbo\stored procedures\UspInsertMessage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
@@ -112,7 +114,7 @@
     <None Include="dbo\data\datafix\UserClientProvider.datafix.sql" />
     <None Include="dbo\data\datascript\LkWorkHour.data.sql" />
     <None Include="dbo\data\datascript\LkCategory.data.sql" />
-    <None Include="dbo\user defiined types\MessageTableType.sql" />
+    <Build Include="dbo\user defiined types\MessageTableType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\data\PostDeployment.sql" />
