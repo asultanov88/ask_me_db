@@ -1,58 +1,47 @@
 ﻿-- ====================================================================================================================
 -- Author:      A. Sultanov
 -- Create Date: 12/04/2023
--- Description: Gets LkWorkDay table lookup values.
+-- Description: Inserts a new subject.
 -- Modification History:
 -- When             Who                 Description 
 -- ------------     ----------------    -------------------------------------------------------------------------------
 -- ====================================================================================================================
 
-CREATE PROCEDURE [dbo].[UspGetMyProviders]
+CREATE PROCEDURE [dbo].[UspGetProviderClients]
 
-    @ClientId INT
+    @ProviderId INT
 
 AS
 BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
-        IF(@ClientId IS NULL OR @ClientId = 0)
-            BEGIN
-                RAISERROR('Invalid ClientId was supllied.',16,1)
-            END
 
-        DECLARE @ClientUserId INT = (
+        DECLARE @ProviderUserId INT = (
             SELECT TOP 1
                 u.[UserId]
             FROM
                 [dbo].[ClientProvider] cp
-                JOIN [ClientUser] cu
-                    ON cp.[ClientId] = cu.[ClientId]
+                JOIN [ProviderUser] pu
+                    ON cp.[ProviderId] = pu.[ProviderId]
                 JOIN [User] u
-                    ON cu.[UserId] = u.[UserId]
+                    ON pu.[UserId] = u.[UserId]
             WHERE
-                cp.[ClientId] = @ClientId
+                cp.ProviderId = @ProviderId
         )
 
         SELECT DISTINCT
-            cp.[ClientProviderId],
-            pu.[ProviderId],
-            u.[UserId] AS ProviderUserId,
+            cp.[ClientId],
+            u.[UserId] AS ClientUserId,
             u.[FirstName],
             u.[LastName],
             u.[Email],
-            pd.[CompanyName],
-            pd.[Address],
-            pd.[PhoneNumber],
-            pd.[Description],
             CAST(COUNT(m.[MessageId]) AS BIT) AS NewMessage
         FROM
             [dbo].[ClientProvider] cp
-            JOIN [ProviderUser] pu
-                ON cp.[ProviderId] = pu.[ProviderId]
+            JOIN [ClientUser] cu
+                ON cp.[ClientId] = cu.[ClientId]
             JOIN [User] u
-                ON pu.[UserId] = u.[UserId]
-            JOIN [ProviderDetails] pd
-                ON cp.ProviderId = pd.[ProviderId]
+                ON cu.[UserId] = u.[UserId]
             LEFT JOIN [Subject] s
                 ON cp.[ClientProviderId] = s.[ClientProviderId]
             LEFT JOIN [SubjectMessage] sm
@@ -60,20 +49,15 @@ BEGIN
             LEFT JOIN [Message] m
                 ON sm.[MessageId] = m.[MessageId]
                 AND m.[Viewed] = 0
-                AND m.[CreatedBy] != @ClientUserId
+                AND m.[CreatedBy] != @ProviderUserId
         WHERE
-            cp.[ClientId] = @ClientId
+            cp.[ProviderId] = @ProviderId
         GROUP BY
-            cp.[ClientProviderId],
-            pu.[ProviderId],
+            cp.[ClientId],
             u.[UserId],
             u.[FirstName],
             u.[LastName],
-            u.[Email],
-            pd.[CompanyName],
-            pd.[Address],
-            pd.[PhoneNumber],
-            pd.[Description]
+            u.[Email]
 
     END TRY
     BEGIN CATCH

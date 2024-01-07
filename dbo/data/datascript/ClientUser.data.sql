@@ -11,7 +11,8 @@ IF(@ExecutionExistsClientUser <> 1)
 		INSERT INTO	[dbo].[ClientUser]
 			([ClientId], [UserId])
 		VALUES
-			 (1, 1)
+			 (1, 1),
+			 (2, 4)
 	
 		SET IDENTITY_INSERT [dbo].[ClientUser] OFF
 

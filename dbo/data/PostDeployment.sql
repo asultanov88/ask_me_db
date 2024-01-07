@@ -16,7 +16,8 @@ Post-Deployment Script Template
 -- DataScript.
 :r .\datascript\User.data.sql
 :r .\datascript\ClientUser.data.sql
-:r .\datascript\ProviderUser.data.sql	
+:r .\datascript\ProviderUser.data.sql
+:r .\datascript\ProviderDetails.data.sql	
 :r .\datascript\LkWeekDay.data.sql	
 :r .\datascript\LkWorkHour.data.sql	
 :r .\datascript\LkCategory.data.sql	
