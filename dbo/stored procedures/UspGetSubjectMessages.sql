@@ -12,27 +12,44 @@ CREATE PROCEDURE [dbo].[UspGetSubjectMessages]
     @SubjectId      INT,
     @ChunkCount     INT,
     @ChunkNum       INT,
-    @ClientId       INT
+    @UserId         INT,
+    @IsClient       BIT
 
 AS
 BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
 
-        DROP TABLE IF EXISTS #ClientProviderValidation
+        DROP TABLE IF EXISTS #SubjectAccessValidation
         SELECT
-            cp.[ClientId]
+            cp.[ClientProviderId],
+            cu.[UserId] AS ClientUserId,
+            pu.[UserId] AS ProviderUserId
         INTO
-            #ClientProviderValidation
+            #SubjectAccessValidation
         FROM
             [dbo].[Subject] s
             JOIN [ClientProvider] cp
-                ON s.[ClientProviderId] = cp.[ClientProviderId]                
+                ON s.[ClientProviderId] = cp.[ClientProviderId]
+            JOIN [ClientUser] cu
+                ON cp.[ClientId] = cu.[ClientId]
+            JOIN [ProviderUser] pu
+                ON pu.[ProviderId] = cp.[ProviderId]
         WHERE
             s.[SubjectId] = @SubjectId
-            AND cp.[ClientId] = @ClientId
 
-        IF(NOT EXISTS(SELECT 1 FROM #ClientProviderValidation))
+        IF(NOT EXISTS(
+            SELECT 
+                1
+            FROM 
+                #SubjectAccessValidation 
+            WHERE
+                @UserId =
+                    CASE @IsClient
+                        WHEN 1 THEN [ClientUserId]
+                        WHEN 0 THEN [ProviderUserId]
+                    END
+            ))
             BEGIN
                 RAISERROR('Unauthorised subjectId is requested.',16,1)
             END
