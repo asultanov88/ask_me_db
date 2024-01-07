@@ -30,7 +30,8 @@ BEGIN
             pd.[CompanyName],
             pd.[Address],
             pd.[PhoneNumber],
-            pd.[Description]
+            pd.[Description],
+            CAST(COUNT(m.[MessageId]) AS BIT) AS NewMessages
         FROM
             [dbo].[ClientProvider] cp
             JOIN [ProviderUser] pu
@@ -39,8 +40,26 @@ BEGIN
                 ON pu.[UserId] = u.[UserId]
             JOIN [ProviderDetails] pd
                 ON cp.ProviderId = pd.[ProviderId]
+            LEFT JOIN [Subject] s
+                ON cp.[ClientProviderId] = s.[ClientProviderId]
+            LEFT JOIN [SubjectMessage] sm
+                ON s.[SubjectId] = sm.[SubjectId]
+            LEFT JOIN [Message] m
+                ON sm.[MessageId] = m.[MessageId]
+                AND m.[Viewed] = 0
         WHERE
             cp.[ClientId] = @ClientId
+        GROUP BY
+            cp.[ClientProviderId],
+            pu.[ProviderId],
+            u.[UserId],
+            u.[FirstName],
+            u.[LastName],
+            u.[Email],
+            pd.[CompanyName],
+            pd.[Address],
+            pd.[PhoneNumber],
+            pd.[Description]
 
     END TRY
     BEGIN CATCH
