@@ -31,7 +31,7 @@ BEGIN
             pd.[Address],
             pd.[PhoneNumber],
             pd.[Description],
-            CAST(COUNT(m.[MessageId]) AS BIT) AS NewMessages
+            CAST(COUNT(m.[MessageId]) AS BIT) AS NewMessage
         FROM
             [dbo].[ClientProvider] cp
             JOIN [ProviderUser] pu
