@@ -30,56 +30,52 @@ BEGIN
         IF(@ClientProviderId IS NULL)
             BEGIN
                 RAISERROR('Provider is not selected for this client.',16,1)
-            END
+            END     
 
-        IF(@ClientProviderId IS NOT NULL)
-            BEGIN
+        -- Subject select.
+        DROP TABLE IF EXISTS #ClientProviderSubjects
+        SELECT 
+            s.[SubjectId],
+            s.[Title]
+        INTO 
+            #ClientProviderSubjects
+        FROM
+            [dbo].[Subject] s
+        WHERE
+            s.[ClientProviderId] = @ClientProviderId
+            AND s.[Deleted] = 0
 
-                -- Subject select.
-                DROP TABLE IF EXISTS #ClientProviderSubjects
-                SELECT 
-                    s.[SubjectId],
-                    s.[Title]
-                INTO 
-                    #ClientProviderSubjects
-                FROM
-                    [dbo].[Subject] s
-                WHERE
-                    s.[ClientProviderId] = @ClientProviderId
-                    AND s.[Deleted] = 0
+        -- Message select.
+        DROP TABLE IF EXISTS #SubjectMessages
+        SELECT
+            m.[MessageId],
+            sm.[SubjectId]
+        INTO
+            #SubjectMessages
+        FROM
+            [dbo].[Message] m
+            JOIN [SubjectMessage] sm
+                ON m.[MessageId] = sm.[MessageId]
+            JOIN #ClientProviderSubjects cps
+                ON cps.[SubjectId] = sm.[SubjectId]
+        WHERE
+            m.[Viewed] = 0
 
-                -- Message select.
-                DROP TABLE IF EXISTS #SubjectMessages
-                SELECT
-                    m.[MessageId],
-                    sm.[SubjectId]
-                INTO
-                    #SubjectMessages
-                FROM
-                    [dbo].[Message] m
-                    JOIN [SubjectMessage] sm
-                        ON m.[MessageId] = sm.[MessageId]
-                    JOIN #ClientProviderSubjects cps
-                        ON cps.[SubjectId] = sm.[SubjectId]
-                WHERE
-                    m.[Viewed] = 0
+        -- Final select with message count.
+        SELECT 
+            cps.[SubjectId],
+            cps.[Title],
+            COUNT(sm.[SubjectId]) AS NewMessageCount
+        FROM 
+            #ClientProviderSubjects cps
+            LEFT JOIN #SubjectMessages sm 
+                ON cps.[SubjectId] = sm.[SubjectId]
+        GROUP BY 
+            cps.[SubjectId],
+			cps.[Title]
+        ORDER BY
+            cps.[SubjectId] DESC
 
-                -- Final select with message count.
-                SELECT 
-                    cps.[SubjectId],
-                    cps.[Title],
-                    COUNT(sm.[SubjectId]) AS NewMessageCount
-                FROM 
-                    #ClientProviderSubjects cps
-                    LEFT JOIN #SubjectMessages sm 
-                        ON cps.[SubjectId] = sm.[SubjectId]
-                GROUP BY 
-                    cps.[SubjectId],
-					cps.[Title]
-                ORDER BY
-                    cps.[SubjectId] DESC
-
-            END
     END TRY
     BEGIN CATCH
         THROW

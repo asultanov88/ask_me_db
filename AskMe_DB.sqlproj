@@ -103,6 +103,7 @@
     <Build Include="dbo\tables\SubjectMessage.sql" />
     <Build Include="dbo\stored procedures\UspGetProviderSubjects.sql" />
     <Build Include="dbo\stored procedures\UspInsertMessage.sql" />
+    <Build Include="dbo\stored procedures\UspGetSubjectMessages.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
