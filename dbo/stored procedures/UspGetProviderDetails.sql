@@ -16,25 +16,38 @@ BEGIN
     SET NOCOUNT, XACT_ABORT ON;
     BEGIN TRY
         
-       DROP TABLE IF EXISTS #providerDetails
 
-	   		SELECT
-		       pd.[CompanyName],
-               pd.[Address],
-               pd.[PhoneNumber],
-               pd.[Description],
-               CONCAT
-               (
-               	    (SELECT [WorkHour] FROM [dbo].[LkWorkHour] WHERE [LkWorkHourId] = pwh.[FromLkWorkHourId]),
-                    N' - ',
-                    (SELECT [WorkHour] FROM [dbo].[LkWorkHour] WHERE [LkWorkHourId] = pwh.[ToLkWorkHourId])               
-               ) AS WorkHours
-           FROM
-               [dbo].[ProviderDetails] pd
-               JOIN [ProviderWorkHour] pwh
-                   ON pd.[ProviderId] = pwh.[ProviderId]
-		    WHERE
-			    pd.[ProviderId] = @ProviderId
+    DROP TABLE IF EXISTS #providerDetails
+
+	   	SELECT
+            pu.[ProviderId],
+            u.[UserId] AS ProviderUserId,
+            u.[FirstName],
+            u.[LastName],
+            u.[Email],
+		    pd.[CompanyName],
+            pd.[Address],
+            pd.[PhoneNumber],
+            pd.[Description],
+            CONCAT
+            (
+                (SELECT [WorkHour] FROM [dbo].[LkWorkHour] WHERE [LkWorkHourId] = pwh.[FromLkWorkHourId]),
+                CASE 
+                    WHEN ((SELECT [WorkHour] FROM [dbo].[LkWorkHour] WHERE [LkWorkHourId] = pwh.[ToLkWorkHourId]) IS NOT NULL) THEN N' - '
+                    ELSE N''
+                END,
+                (SELECT [WorkHour] FROM [dbo].[LkWorkHour] WHERE [LkWorkHourId] = pwh.[ToLkWorkHourId])               
+            ) AS WorkHours
+        FROM
+            [dbo].[ProviderDetails] pd
+            JOIN [ProviderUser] pu
+                ON pu.[ProviderId] = pd.[ProviderId]  
+            JOIN [User] u
+                ON u.[UserId] = pu.[UserId]
+            LEFT JOIN [ProviderWorkHour] pwh
+                ON pd.[ProviderId] = pwh.[ProviderId]
+		WHERE
+			pd.[ProviderId] = @ProviderId
 
     END TRY
     BEGIN CATCH

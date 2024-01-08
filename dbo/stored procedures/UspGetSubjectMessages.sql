@@ -60,6 +60,7 @@ BEGIN
             m.[MessageId],
             m.[Message],
             m.[CreatedBy],
+            m.[CreatedAt],
             m.[Viewed]
         FROM
             [dbo].[SubjectMessage] sm
