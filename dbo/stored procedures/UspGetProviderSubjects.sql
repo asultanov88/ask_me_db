@@ -28,7 +28,7 @@ BEGIN
         )
 
 		DECLARE @ClientUserId INT = (
-			SELECT
+			SELECT TOP 1
 				cu.[UserId]
 			FROM
 				[ClientProvider] cp

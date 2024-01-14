@@ -27,6 +27,17 @@ BEGIN
                 AND [ClientId] = @ClientId
         )
 
+        DECLARE @ProviderUserId INT = (
+			SELECT TOP 1
+				pu.[UserId]
+			FROM
+				[ClientProvider] cp
+				JOIN [ProviderUser] pu
+					ON cp.[ProviderId] = pu.[ProviderId]
+            WHERE
+				cp.[ClientProviderId] = @ClientProviderId
+		)
+
         IF(@ClientProviderId IS NULL)
             BEGIN
                 RAISERROR('Client is not selected for this provider.',16,1)
@@ -45,7 +56,7 @@ BEGIN
             s.[ClientProviderId] = @ClientProviderId
             AND s.[Deleted] = 0
 
-        -- Message select.
+        -- New Message select.
         DROP TABLE IF EXISTS #SubjectMessages
         SELECT
             m.[MessageId],
@@ -60,6 +71,7 @@ BEGIN
                 ON cps.[SubjectId] = sm.[SubjectId]
         WHERE
             m.[Viewed] = 0
+            AND m.CreatedBy != @ProviderUserId
 
         -- Final select with message count.
         SELECT 

@@ -35,7 +35,7 @@ BEGIN
             u.[FirstName],
             u.[LastName],
             u.[Email],
-            CAST(COUNT(m.[MessageId]) AS BIT) AS NewMessage
+            COUNT(m.[MessageId]) AS NewMessageCount
         FROM
             [dbo].[ClientProvider] cp
             JOIN [ClientUser] cu
