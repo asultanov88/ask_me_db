@@ -38,7 +38,8 @@ BEGIN
             u.[Email],
             pd.[CompanyName],
             pd.[Description],
-            pd.[PhoneNumber]
+            pd.[PhoneNumber],
+            u.[UserId] AS ProviderUserId
         FROM
             [dbo].[ProviderUser] pu
             JOIN [User] u

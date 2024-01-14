@@ -48,8 +48,17 @@ BEGIN
             @SubjectId,
             @MessageId
 
-        -- Return new messageId.
-        SELECT @MessageId AS MessageId
+        -- Return posted message.
+        SELECT
+            [MessageId],
+            [Message],
+            [CreatedBy],
+            [CreatedAt],
+            [Viewed]
+        FROM
+            [dbo].[Message]
+        WHERE
+            [MessageId] = @MessageId
 
     END TRY
     BEGIN CATCH
