@@ -33,6 +33,7 @@ BEGIN
             [dbo].[Message]
         SELECT
             [Message],
+            [IsAttachment],
             [CreatedBy],
             SYSUTCDATETIME(),
             0 -- Not viewed.
@@ -52,6 +53,7 @@ BEGIN
         SELECT
             [MessageId],
             [Message],
+            [IsAttachment],
             [CreatedBy],
             [CreatedAt],
             [Viewed]

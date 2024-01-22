@@ -107,6 +107,9 @@
     <Build Include="dbo\stored procedures\UspGetProviderClients.sql" />
     <Build Include="dbo\stored procedures\UspGetClientSubjects.sql" />
     <Build Include="dbo\stored procedures\UspUpdateMessageViewed.sql" />
+    <Build Include="dbo\tables\MessageAttachment.sql" />
+    <Build Include="dbo\user defiined types\MessageAttachmentTableType.sql" />
+    <Build Include="dbo\stored procedures\UspInsertMessageAttachment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />

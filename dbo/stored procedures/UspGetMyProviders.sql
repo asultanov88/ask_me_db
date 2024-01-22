@@ -34,7 +34,6 @@ BEGIN
         )
 
         SELECT DISTINCT
-            cp.[ClientProviderId],
             pu.[ProviderId],
             u.[UserId] AS ProviderUserId,
             u.[FirstName],
@@ -64,7 +63,6 @@ BEGIN
         WHERE
             cp.[ClientId] = @ClientId
         GROUP BY
-            cp.[ClientProviderId],
             pu.[ProviderId],
             u.[UserId],
             u.[FirstName],
