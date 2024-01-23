@@ -115,6 +115,7 @@
     <Build Include="dbo\stored procedures\UpsInsertAttachmentThumbnail.sql" />
     <Build Include="dbo\stored procedures\UspGetThumbnails.sql" />
     <Build Include="dbo\stored procedures\UspGetMessageAttachments.sql" />
+    <Build Include="dbo\stored procedures\UspGetMessageAttachmentById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
