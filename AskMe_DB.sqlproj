@@ -110,6 +110,10 @@
     <Build Include="dbo\tables\MessageAttachment.sql" />
     <Build Include="dbo\user defiined types\MessageAttachmentTableType.sql" />
     <Build Include="dbo\stored procedures\UspInsertMessageAttachment.sql" />
+    <Build Include="dbo\tables\AttachmentThumbnail.sql" />
+    <Build Include="dbo\user defiined types\AttachmentThumbnailTableType.sql" />
+    <Build Include="dbo\stored procedures\UpsInsertAttachmentThumbnail.sql" />
+    <Build Include="dbo\stored procedures\UspGetThumbnails.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
