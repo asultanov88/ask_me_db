@@ -59,6 +59,7 @@ BEGIN
         SELECT
             m.[MessageId],
             m.[Message],
+            m.[IsAttachment],
             m.[CreatedBy],
             m.[CreatedAt],
             m.[Viewed]
