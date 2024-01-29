@@ -23,6 +23,7 @@ BEGIN
         SELECT
             [MessageId],
             [OriginalName],
+            [MimeType],
             [Uuid],
             [S3Key],
             [S3Bucket],
@@ -36,6 +37,7 @@ BEGIN
             [MessageAttachmentId],
             [MessageId],
             [OriginalName],
+            [MimeType],
             [Uuid],
             [S3Key],
             [S3Bucket],

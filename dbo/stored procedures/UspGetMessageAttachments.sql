@@ -20,6 +20,7 @@ BEGIN
             ma.[MessageAttachmentId],
             ma.[MessageId],
             ma.[OriginalName],
+            ma.[MimeType],
             ma.[Uuid],
             ma.[S3Key],
             ma.[S3Bucket],

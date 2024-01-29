@@ -22,7 +22,7 @@ BEGIN
                 RAISERROR('SubjectId cannot be null.',16,1)
             END
 
-        IF(ISNULL(TRIM((SELECT TOP 1 [Message] FROM @Message)), '') = '')
+        IF(ISNULL(TRIM((SELECT TOP 1 [Message] FROM @Message)), '') = '' AND (SELECT TOP 1 [IsAttachment] FROM @Message) = 0)
             BEGIN
                 RAISERROR('Message cannot be null or blank.',16,1)
             END
