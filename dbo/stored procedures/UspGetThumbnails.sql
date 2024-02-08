@@ -17,15 +17,17 @@ BEGIN
     BEGIN TRY
         
         SELECT
-            [AttachmentThumbnailId],
-            [MessageAttachmentId],
-            [MimeType],
-            [Uuid],
-            [S3Key],
-            [S3Bucket],
-            [Location]
+            ath.[AttachmentThumbnailId],
+            ath.[MessageAttachmentId],
+            ath.[MimeType],
+            ath.[Uuid],
+            IIF(ath.[MimeType] LIKE '%gif%', ma.[S3Key], ath.[S3Key]) AS S3Key,
+            IIF(ath.[MimeType] LIKE '%gif%', ma.[S3Bucket], ath.[S3Bucket]) AS S3Bucket,
+            ath.[Location]
         FROM
-            [dbo].[AttachmentThumbnail]
+            [dbo].[AttachmentThumbnail] ath
+            JOIN [dbo].[MessageAttachment] ma
+                ON ath.[MessageAttachmentId] = ma.[MessageAttachmentId]
         WHERE
             [AttachmentThumbnailId] IN (SELECT [Pk] FROM @AttachmentThumbnailIds)
 
