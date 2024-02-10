@@ -64,8 +64,7 @@ BEGIN
             m.[CreatedAt],
             m.[Viewed],
             mr.[ReplyToMessageId],
-            mr.[ReplyToMessage],
-            mr.[ReplyDateTime]
+            mr.[ReplyToMessage]
         FROM
             [dbo].[SubjectMessage] sm
             JOIN [Message] m

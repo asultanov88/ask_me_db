@@ -25,8 +25,7 @@ BEGIN
             m.[Viewed],
             sm.[SubjectId],
             mr.[ReplyToMessageId],
-            mr.[ReplyToMessage],
-            mr.[ReplyDateTime] 
+            mr.[ReplyToMessage]
         FROM
             [dbo].[Message] m
             JOIN [dbo].[SubjectMessage] sm

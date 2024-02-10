@@ -57,8 +57,7 @@ BEGIN
                 SELECT
                     @MessageId,
                     @ReplyToMessageId,
-                    (SELECT TOP 1 [Message] FROM [dbo].[Message] WHERE [MessageId] = @ReplyToMessageId),
-                    SYSUTCDATETIME()
+                    (SELECT TOP 1 [Message] FROM [dbo].[Message] WHERE [MessageId] = @ReplyToMessageId)
             END
 
         -- Return posted message.
@@ -70,8 +69,7 @@ BEGIN
             m.[CreatedAt],
             m.[Viewed],
             mr.[ReplyToMessageId],
-            mr.[ReplyToMessage],
-            mr.[ReplyDateTime]            
+            mr.[ReplyToMessage]
         FROM
             [dbo].[Message] m
             LEFT JOIN [dbo].[MessageReply] mr

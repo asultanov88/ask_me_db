@@ -4,7 +4,6 @@
 	[MessageId]			INT NOT NULL,
 	[ReplyToMessageId]	INT	NOT NULL,
 	[ReplyToMessage]	NVARCHAR(MAX) NULL,
-	[ReplyDateTime]		DATETIME2(7) NOT NULL,
 	CONSTRAINT [MessageReplyId] PRIMARY KEY CLUSTERED ([MessageReplyId] ASC),
 	CONSTRAINT [FK_MessageReply_MessageId] FOREIGN KEY ([MessageId]) REFERENCES [dbo].[Message]([MessageId]),
 	CONSTRAINT [FK_MessageReply_ReplyToMessageId] FOREIGN KEY (ReplyToMessageId) REFERENCES [dbo].[Message]([MessageId]),
