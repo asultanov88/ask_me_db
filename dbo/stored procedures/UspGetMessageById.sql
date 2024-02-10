@@ -23,11 +23,16 @@ BEGIN
             m.[CreatedBy],
             m.[CreatedAt],
             m.[Viewed],
-            sm.[SubjectId]
+            sm.[SubjectId],
+            mr.[ReplyToMessageId],
+            mr.[ReplyToMessage],
+            mr.[ReplyDateTime] 
         FROM
             [dbo].[Message] m
             JOIN [dbo].[SubjectMessage] sm
                 ON sm.[MessageId] = m.[MessageId]
+            LEFT JOIN [dbo].[MessageReply] mr
+                ON m.[MessageId] = mr.[MessageId]
         WHERE
             m.[MessageId] = @MessageId
 

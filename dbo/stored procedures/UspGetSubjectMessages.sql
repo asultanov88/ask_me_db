@@ -62,11 +62,16 @@ BEGIN
             m.[IsAttachment],
             m.[CreatedBy],
             m.[CreatedAt],
-            m.[Viewed]
+            m.[Viewed],
+            mr.[ReplyToMessageId],
+            mr.[ReplyToMessage],
+            mr.[ReplyDateTime]
         FROM
             [dbo].[SubjectMessage] sm
             JOIN [Message] m
                 ON sm.[MessageId] = m.[MessageId]
+            LEFT JOIN [dbo].[MessageReply] mr
+                ON m.[MessageId] = mr.[MessageId]
         WHERE
             sm.[SubjectId] = @SubjectId
         ORDER BY m.[MessageId] DESC

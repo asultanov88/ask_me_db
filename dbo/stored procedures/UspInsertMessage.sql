@@ -1,7 +1,7 @@
 ﻿-- ====================================================================================================================
 -- Author:      A. Sultanov
 -- Create Date: 12/04/2023
--- Description: Gets LkCategory table lookup values.
+-- Description: Inserts a new message.
 -- Modification History:
 -- When             Who                 Description 
 -- ------------     ----------------    -------------------------------------------------------------------------------
@@ -10,6 +10,7 @@
 CREATE PROCEDURE [dbo].[UspInsertMessage]
 
     @SubjectId INT,
+    @ReplyToMessageId INT = NULL,
     @Message MessageTableType READONLY 
 
 AS
@@ -49,18 +50,34 @@ BEGIN
             @SubjectId,
             @MessageId
 
+        IF(@ReplyToMessageId IS NOT NULL AND @ReplyToMessageId > 0)
+            BEGIN
+                INSERT INTO
+                    [dbo].[MessageReply]
+                SELECT
+                    @MessageId,
+                    @ReplyToMessageId,
+                    (SELECT TOP 1 [Message] FROM [dbo].[Message] WHERE [MessageId] = @ReplyToMessageId),
+                    SYSUTCDATETIME()
+            END
+
         -- Return posted message.
         SELECT
-            [MessageId],
-            [Message],
-            [IsAttachment],
-            [CreatedBy],
-            [CreatedAt],
-            [Viewed]
+            m.[MessageId],
+            m.[Message],
+            m.[IsAttachment],
+            m.[CreatedBy],
+            m.[CreatedAt],
+            m.[Viewed],
+            mr.[ReplyToMessageId],
+            mr.[ReplyToMessage],
+            mr.[ReplyDateTime]            
         FROM
-            [dbo].[Message]
+            [dbo].[Message] m
+            LEFT JOIN [dbo].[MessageReply] mr
+                ON m.[MessageId] = mr.[MessageId]
         WHERE
-            [MessageId] = @MessageId
+            m.[MessageId] = @MessageId
 
     END TRY
     BEGIN CATCH
