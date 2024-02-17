@@ -50,6 +50,7 @@ BEGIN
             @SubjectId,
             @MessageId
 
+        -- MessageReply insert.
         IF(@ReplyToMessageId IS NOT NULL AND @ReplyToMessageId > 0)
             BEGIN
                 INSERT INTO
@@ -57,7 +58,32 @@ BEGIN
                 SELECT
                     @MessageId,
                     @ReplyToMessageId,
-                    (SELECT TOP 1 [Message] FROM [dbo].[Message] WHERE [MessageId] = @ReplyToMessageId)
+                    m.[Message],
+                    m.[IsAttachment],
+                    m.[CreatedBy],
+                    ta.[S3Key],
+                    ta.[S3Bucket],
+                    ta.[OriginalName]
+                FROM
+                    [dbo].[Message] m
+                    LEFT JOIN (
+                        SELECT TOP 1
+                            ath.[S3Key],
+                            ath.[S3Bucket],
+                            ma.[OriginalName],
+                            @ReplyToMessageId AS ReplyToMessageId 
+                        FROM
+                            [dbo].[MessageAttachment] ma
+                            JOIN [dbo].[AttachmentThumbnail] ath
+                                ON ma.[MessageAttachmentId] = ath.[MessageAttachmentId]
+                            WHERE
+                                ma.MessageId = @ReplyToMessageId
+                            ORDER BY
+                                ma.[MessageAttachmentId] ASC
+                    ) AS ta
+                        ON m.[MessageId] = ta.[ReplyToMessageId]
+                WHERE
+                    m.[MessageId] = @ReplyToMessageId                    
             END
 
         -- Return posted message.
