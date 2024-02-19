@@ -64,7 +64,11 @@ BEGIN
             m.[CreatedAt],
             m.[Viewed],
             mr.[ReplyToMessageId],
-            mr.[ReplyToMessage]
+            mr.[ReplyToMessage],
+            mr.[OriginalMessageCreatedBy],
+            mr.[ThumbnailS3Key],
+            mr.[ThumbnailS3Bucket],
+            mr.[AttachmentOriginalName]
         FROM
             [dbo].[SubjectMessage] sm
             JOIN [Message] m

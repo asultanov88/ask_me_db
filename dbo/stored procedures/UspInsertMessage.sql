@@ -59,7 +59,6 @@ BEGIN
                     @MessageId,
                     @ReplyToMessageId,
                     m.[Message],
-                    m.[IsAttachment],
                     m.[CreatedBy],
                     ta.[S3Key],
                     ta.[S3Bucket],
@@ -95,7 +94,11 @@ BEGIN
             m.[CreatedAt],
             m.[Viewed],
             mr.[ReplyToMessageId],
-            mr.[ReplyToMessage]
+            mr.[ReplyToMessage],
+            mr.[OriginalMessageCreatedBy],
+            mr.[ThumbnailS3Key],
+            mr.[ThumbnailS3Bucket],
+            mr.[AttachmentOriginalName]
         FROM
             [dbo].[Message] m
             LEFT JOIN [dbo].[MessageReply] mr
