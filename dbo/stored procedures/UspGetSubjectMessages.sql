@@ -62,6 +62,7 @@ BEGIN
             m.[IsAttachment],
             m.[CreatedBy],
             m.[CreatedAt],
+            m.[LastUpdatedAt],
             m.[Viewed],
             mr.[ReplyToMessageId],
             mr.[ReplyToMessage],

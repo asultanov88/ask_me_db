@@ -37,6 +37,7 @@ BEGIN
             [IsAttachment],
             [CreatedBy],
             SYSUTCDATETIME(),
+            NULL,
             0 -- Not viewed.
         FROM
             @Message
@@ -92,6 +93,7 @@ BEGIN
             m.[IsAttachment],
             m.[CreatedBy],
             m.[CreatedAt],
+            m.[LastUpdatedAt],
             m.[Viewed],
             mr.[ReplyToMessageId],
             mr.[ReplyToMessage],

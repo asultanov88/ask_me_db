@@ -22,6 +22,7 @@ BEGIN
             m.[IsAttachment],
             m.[CreatedBy],
             m.[CreatedAt],
+            m.[LastUpdatedAt],
             m.[Viewed],
             sm.[SubjectId],
             mr.[ReplyToMessageId],

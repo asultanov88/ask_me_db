@@ -118,6 +118,8 @@
     <Build Include="dbo\stored procedures\UspGetMessageAttachmentById.sql" />
     <Build Include="dbo\stored procedures\UspGetMessageById.sql" />
     <Build Include="dbo\tables\MessageReply.sql" />
+    <Build Include="dbo\tables\MessageHistory.sql" />
+    <Build Include="dbo\stored procedures\UspUpdateMessage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
