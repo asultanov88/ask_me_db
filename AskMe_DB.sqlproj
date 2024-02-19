@@ -120,6 +120,7 @@
     <Build Include="dbo\tables\MessageReply.sql" />
     <Build Include="dbo\tables\MessageHistory.sql" />
     <Build Include="dbo\stored procedures\UspUpdateMessage.sql" />
+    <Build Include="dbo\stored procedures\UspGetMessageHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\publish profiles\AskMe_DB.publish.xml" />
