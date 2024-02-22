@@ -27,7 +27,7 @@ BEGIN
                 ON mh.[MessageId] = mids.[Pk]
                 AND mh.[Message] IS NOT NULL
         ORDER BY
-            mh.[MessageHistoryId] DESC
+            mh.[MessageHistoryId] ASC
 
     END TRY
     BEGIN CATCH
